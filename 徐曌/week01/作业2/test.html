@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>文本分类接口测试</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2em;
+      background: #f0f8ff;
+    }
+    h1 {
+      color: #0077cc;
+    }
+    button {
+      margin: 0.5em;
+      padding: 0.6em 1.2em;
+      font-size: 1em;
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #005fa3;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧪 文本分类接口测试</h1>
+
+  <button onclick="openLink('/text-cls/ml?text=播放一首周杰伦的歌')">全部模型预测</button>
+  <button onclick="openLink('/text-cls/ml?model=knn&text=打开空调')">KNN 模型</button>
+  <button onclick="openLink('/text-cls/ml?model=nb&text=明天北京天气怎么样')">朴素贝叶斯</button>
+  <button onclick="openLink('/text-cls/ml?model=lr&text=设置一个早上七点的闹钟')">逻辑回归</button>
+  <button onclick="openLink('/text-cls/ml?model=svm&text=我想听电台')">支持向量机</button>
+  <button onclick="openLink('/text-cls/llm?text=播放一部科幻电影')">大语言模型</button>
+  <button onclick="openLink('/docs')">📘 打开 Swagger 文档</button>
+
+  <script>
+    function openLink(path) {
+      const url = "http://127.0.0.1:8000" + path;
+      window.open(url, "_blank");
+    }
+  </script>
+</body>
+</html>

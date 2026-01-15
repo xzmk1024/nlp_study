@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import jieba
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
@@ -11,7 +12,8 @@ from fastapi import FastAPI, Query
 import uvicorn
 
 from typing import Dict
-
+import threading
+import time
 import webbrowser
 
 app = FastAPI()
@@ -51,7 +53,7 @@ svm_model.fit(input_feature_tfidf, dataset[1].values)
 
 # ---------------- LLM 客户端 ----------------
 client = OpenAI(
-    api_key="sk-xxx",  # token
+    api_key="sk-95d76819e3694838834b8a1bb09350a4",  # token
     base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
 )
 
@@ -122,7 +124,13 @@ def text_classify_using_llm(text: str) -> str:
     prediction = completion.choices[0].message.content
     return f"大模型预测类别: {prediction}"
 
+def open_browser():
+    time.sleep(8)
+    file_path = os.path.abspath("test.html")
+    webbrowser.open(f"file://{file_path}")
+
 if __name__ == "__main__":
+    threading.Thread(target=open_browser).start()
     uvicorn.run(
         "classify:app",
         host="0.0.0.0",
