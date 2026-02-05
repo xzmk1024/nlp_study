@@ -19,9 +19,9 @@ print(raw_ds)
 # train: 3000 条
 # val:   500 条
 # test:  500 条
-train_ds = train_ds.shuffle(seed=42).select(range(3000))
-val_ds   = val_ds.shuffle(seed=42).select(range(500))
-test_ds  = test_ds.shuffle(seed=42).select(range(500))
+# train_ds = train_ds.shuffle(seed=42).select(range(3000))
+# val_ds = val_ds.shuffle(seed=42).select(range(500))
+# test_ds  = test_ds.shuffle(seed=42).select(range(500))
 
 
 
@@ -93,7 +93,7 @@ def compute_metrics(eval_pred):
 training_args = TrainingArguments(
     output_dir='./results',              # 训练输出目录，用于保存模型和状态
     num_train_epochs=1,                  # 训练的总轮数
-    per_device_train_batch_size=16,      # 训练时每个设备（GPU/CPU）的批次大小
+    per_device_train_batch_size=32,      # 训练时每个设备（GPU/CPU）的批次大小
     per_device_eval_batch_size=32,       # 评估时每个设备的批次大小
     warmup_steps=500,                    # 学习率预热的步数，有助于稳定训练， step 定义为 一次 正向传播 + 参数更新
     weight_decay=0.01,                   # 权重衰减，用于防止过拟合
